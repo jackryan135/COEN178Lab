@@ -1,0 +1,268 @@
+SQL> start data.sql
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+INSERT INTO Schedule VALUES ('dg5', 'c32', 't')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (JRYAN.SYS_C00714525) violated - parent key not 
+found 
+
+
+INSERT INTO Schedule VALUES ('dsg2', 'c1', 's')
+*
+ERROR at line 1:
+ORA-02290: check constraint (JRYAN.SYS_C00714523) violated 
+
+
+
+1 row created.
+
+
+1 row created.
+
+SQL> start lab2_queries1.sql
+
+CUSTI FULLNAME                  CITY                                            
+----- ------------------------- ----------                                      
+c1    JohnSmith                 SJ                                              
+c2    MaryJones                 SFO                                             
+a1    VincentChen               SJ                                              
+a12   GregKing                  SJ                                              
+c7    JamesBond                 LA                                              
+x10   SusanBlogg                SFO                                             
+f8    JeffreyChau               SBA                                             
+j13   ConorPhillips             JFK                                             
+
+8 rows selected.
+
+
+CUSTI FIRSTNAME  LASTNAME        CITY                                           
+----- ---------- --------------- ----------                                     
+x10   Susan      Blogg           SFO                                            
+c7    James      Bond            LA                                             
+f8    Jeffrey    Chau            SBA                                            
+a1    Vincent    Chen            SJ                                             
+c2    Mary       Jones           SFO                                            
+a12   Greg       King            SJ                                             
+j13   Conor      Phillips        JFK                                            
+c1    John       Smith           SJ                                             
+
+8 rows selected.
+
+
+SERVICEID  CUSTI DA                                                             
+---------- ----- --                                                             
+dby3       x10   f                                                              
+dg5        c1    r                                                              
+dg5        c1    t                                                              
+dg6        j13   m                                                              
+dsg1       c1    m                                                              
+dsg1       a12   w                                                              
+dsm3       f8    f                                                              
+
+7 rows selected.
+
+
+SERVICEID                                                                       
+----------                                                                      
+dsb1                                                                            
+dsg2                                                                            
+dsm2                                                                            
+
+
+NAME                                                                            
+-------------------------                                                       
+JohnSmith                                                                       
+ConorPhillips                                                                   
+
+
+LASTNAME                                                                        
+---------------                                                                 
+Smith                                                                           
+King                                                                            
+Blogg                                                                           
+Phillips                                                                        
+Chau                                                                            
+
+
+HIGHEST_SERVICEFEE                                                              
+------------------                                                              
+                40                                                              
+
+
+DA NUMSCHEDULED                                                                 
+-- ------------                                                                 
+r             1                                                                 
+t             1                                                                 
+w             1                                                                 
+m             2                                                                 
+f             2                                                                 
+
+
+CUSTI CUSTI CITY                                                                
+----- ----- ----------                                                          
+a12   c1    SJ                                                                  
+a1    c1    SJ                                                                  
+x10   c2    SFO                                                                 
+a12   a1    SJ                                                                  
+c1    a1    SJ                                                                  
+a1    a12   SJ                                                                  
+c1    a12   SJ                                                                  
+c2    x10   SFO                                                                 
+
+8 rows selected.
+
+
+CUSTI NAME                      CITY       LOCATION                             
+----- ------------------------- ---------- ---------------                      
+a12   GregKing                  SJ         SJ                                   
+c1    JohnSmith                 SJ         SJ                                   
+x10   SusanBlogg                SFO        SFO                                  
+f8    JeffreyChau               SBA        SBA                                  
+j13   ConorPhillips             JFK        JFK                                  
+
+
+MAX_SALARY MIN_SALARY                                                           
+---------- ----------                                                           
+    179700          0                                                           
+
+SQL> start data2.sql
+
+Table created.
+
+
+Table created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+SQL> start lab2_queries2.sql
+
+     EMPNO EMPNAME    DEPTI                                                     
+---------- ---------- -----                                                     
+         1 smith      d1                                                        
+         2 jones      d2                                                        
+         3 wayne      d1                                                        
+         4 moor       d3                                                        
+         5 king       d3                                                        
+         6 chen       d1                                                        
+         7 winger     d3                                                        
+
+7 rows selected.
+
+
+DEPTI DEPTNAME                                                                  
+----- ----------                                                                
+d1    Research                                                                  
+d2    Devt                                                                      
+d3    Testing                                                                   
+d4    Advert                                                                    
+
+
+EMPNAME                                                                         
+----------                                                                      
+moor                                                                            
+king                                                                            
+winger                                                                          
+
+SQL> spool off;

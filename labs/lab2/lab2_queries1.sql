@@ -11,10 +11,12 @@ SELECT firstname||lastname as name FROM Customer where custid in (
 
 SELECT lastname FROM Customer where custid in (SELECT custid FROM Schedule);
 
-SELECT max(servicefee) as highest_Servicefee from DeliveryService;
+SELECT max(servicefee) as highest_Servicefee FROM DeliveryService;
 
-SELECT day, count(*) as NumScheduled from Schedule group by day;
+SELECT day, count(*) as NumScheduled FROM Schedule group by day;
 
 SELECT A.custid, B.custid, city  FROM Customer A JOIN Customer B USING (city) WHERE A.custid < B.custid OR A.custid > B.custid;
 
+SELECT custid, firstname||lastname as name, city, location FROM (SELECT * FROM DeliveryService NATURAL JOIN (SELECT * FROM Customer NATURAL JOIN Schedule)) WHERE city = location;
 
+SELECT max(salary) as max_salary, min(salary) as min_salary FROM Staff_2010;
