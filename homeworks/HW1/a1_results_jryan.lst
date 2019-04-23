@@ -1,0 +1,245 @@
+SQL> start a1_tables_jryan.sql
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+SQL> start a1_values_jryan.sql
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+SQL> start a1_queries_jryan.sql
+
+STU NAME                 CITY                                                   
+--- -------------------- ---------------                                        
+111 Jack                 Santa Barbara                                          
+222 Ally                 Bishop                                                 
+333 Conor                New York                                               
+444 Olivia               San Francisco                                          
+555 Connor               Sudburry                                               
+666 Mike                 Santa Clara                                            
+777 Jeffrey              Santa Cruz                                             
+
+7 rows selected.
+
+
+JOBID JOBTITLE                  COMPANY              CITY                       
+----- ------------------------- -------------------- --------------------       
+   HRLYPAY                                                                      
+----------                                                                      
+11111 Software Engineer         Google               Mountain View              
+        40                                                                      
+                                                                                
+22222 Conservationist           SCU                  Bishop                     
+         8                                                                      
+                                                                                
+33333 Camera Technician         Camera Hut           New York                   
+        15                                                                      
+                                                                                
+
+JOBID JOBTITLE                  COMPANY              CITY                       
+----- ------------------------- -------------------- --------------------       
+   HRLYPAY                                                                      
+----------                                                                      
+44444 PR Coordinator            Skillz Inc.          San Francisco              
+        20                                                                      
+                                                                                
+55555 Salesman                  Wayfair              Boston                     
+        15                                                                      
+                                                                                
+66666 Software Engineer         Google               Santa Barbara              
+        40                                                                      
+                                                                                
+
+JOBID JOBTITLE                  COMPANY              CITY                       
+----- ------------------------- -------------------- --------------------       
+   HRLYPAY                                                                      
+----------                                                                      
+77777 Developer                 Camera Hut           Los Angeles                
+        30                                                                      
+                                                                                
+
+7 rows selected.
+
+
+STU JOBID  HRSWORKED STARTDATE ENDDATE                                          
+--- ----- ---------- --------- ---------                                        
+111 11111          8 15-JUN-19 30-AUG-19                                        
+222 22222          4 09-JUL-19 15-SEP-19                                        
+333 33333          7 15-MAR-19 15-MAR-20                                        
+444 44444          5 15-JUN-19 30-AUG-19                                        
+555 55555          6 27-APR-17 05-SEP-22                                        
+666 66666          3 01-SEP-19 31-DEC-19                                        
+777 77777          8 01-SEP-19 31-DEC-19                                        
+
+7 rows selected.
+
+
+NAME                 COMPANY                                                    
+-------------------- --------------------                                       
+Jack                 Google                                                     
+Ally                 SCU                                                        
+Conor                Camera Hut                                                 
+Olivia               Skillz Inc.                                                
+Connor               Wayfair                                                    
+Mike                 Google                                                     
+Jeffrey              Camera Hut                                                 
+
+7 rows selected.
+
+
+NAME                 JOBID JOBTITLE                  COMPANY                    
+-------------------- ----- ------------------------- --------------------       
+Jack                 11111 Software Engineer         Google                     
+Ally                 22222 Conservationist           SCU                        
+Conor                33333 Camera Technician         Camera Hut                 
+Olivia               44444 PR Coordinator            Skillz Inc.                
+Connor               55555 Salesman                  Wayfair                    
+Mike                 66666 Software Engineer         Google                     
+Jeffrey              77777 Developer                 Camera Hut                 
+
+7 rows selected.
+
+
+COMPANY              AVERAGE_PAY                                                
+-------------------- -----------                                                
+Skillz Inc.                   20                                                
+Google                        40                                                
+SCU                            8                                                
+Camera Hut                  22.5                                                
+Wayfair                       15                                                
+
+
+STU NAME                                                                        
+--- --------------------                                                        
+111 Jack                                                                        
+222 Ally                                                                        
+444 Olivia                                                                      
+666 Mike                                                                        
+777 Jeffrey                                                                     
+
+
+COMPANY              MAX_AVERAGE_PAY                                            
+-------------------- ---------------                                            
+Google                            40                                            
+
+
+STU JOBID DAYSWORKED                                                            
+--- ----- ----------                                                            
+111 11111         76                                                            
+222 22222         68                                                            
+333 33333        366                                                            
+444 44444         76                                                            
+555 55555       1957                                                            
+666 66666        121                                                            
+777 77777        121                                                            
+
+7 rows selected.
+
+
+STU NAME                                                                        
+--- --------------------                                                        
+111 Jack                                                                        
+222 Ally                                                                        
+444 Olivia                                                                      
+666 Mike                                                                        
+777 Jeffrey                                                                     
+
+
+CITY                   NUM_JOBS                                                 
+-------------------- ----------                                                 
+Mountain View                 1                                                 
+Bishop                        1                                                 
+San Francisco                 1                                                 
+New York                      1                                                 
+Los Angeles                   1                                                 
+Boston                        1                                                 
+Santa Barbara                 1                                                 
+
+7 rows selected.
+
+
+COMPANY              CITY                 NUM_STU_EMPLOYED                      
+-------------------- -------------------- ----------------                      
+Google               Santa Barbara                       1                      
+Google               Mountain View                       1                      
+SCU                  Bishop                              1                      
+Wayfair              Boston                              1                      
+Camera Hut           Los Angeles                         1                      
+Camera Hut           New York                            1                      
+Skillz Inc.          San Francisco                       1                      
+
+7 rows selected.
+
+
+STU NAME                 CITY                                                   
+--- -------------------- ---------------                                        
+222 Ally                 Bishop                                                 
+333 Conor                New York                                               
+444 Olivia               San Francisco                                          
+
+SQL> spool off
