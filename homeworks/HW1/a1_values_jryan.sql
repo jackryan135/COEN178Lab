@@ -11,8 +11,8 @@ INSERT INTO SummerJob VALUES ('22222', 'Conservationist', 'SCU', 'Bishop', 8.00)
 INSERT INTO SummerJob VALUES ('33333', 'Camera Technician', 'Camera Hut', 'New York', 15.00);
 INSERT INTO SummerJob VALUES ('44444', 'PR Coordinator', 'Skillz Inc.', 'San Francisco', 20.00);
 INSERT INTO SummerJob VALUES ('55555', 'Salesman', 'Wayfair', 'Boston', 15.00);
-INSERT INTO SummerJob VALUES ('66666', 'Software Engineer', 'Pinger', 'Santa Barbara', 40.00);
-INSERT INTO SummerJob VALUES ('77777', 'Developer', 'Riot Games', 'Los Angeles', 30.00);
+INSERT INTO SummerJob VALUES ('66666', 'Software Engineer', 'Google', 'Santa Barbara', 40.00);
+INSERT INTO SummerJob VALUES ('77777', 'Developer', 'Camera Hut', 'Los Angeles', 30.00);
 
 INSERT INTO Student_Work VALUES ('111', '11111', 8, '2019-06-15', '2019-08-30');
 INSERT INTO Student_Work VALUES ('222', '22222', 4, '2019-07-09', '2019-09-15');
