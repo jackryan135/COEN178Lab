@@ -14,7 +14,7 @@ CREATE TABLE ComicBooks(
 
 CREATE TABLE TShirts(
 	itemID VARCHAR(4) REFERENCES StoreItems(itemID),
-	size CHAR(1),
+	shirtSize CHAR(1),
 	PRIMARY KEY(itemID)
 );
 
@@ -33,6 +33,7 @@ CREATE TABLE Orders(
 	itemID VARCHAR(4) REFERENCES StoreItems(itemID), 
 	dateOrdered DATE,
 	numItems INTEGER,
-	dateShipped DATE CHECK (dateShipped >= dateOrdered),
-	shippingFee NUMBER(9,2) DEFAULT 10.00
+	dateShipped DATE,
+	shippingFee NUMBER(9,2) DEFAULT 10.00,
+	CONSTRAINT checkTime CHECK (dateShipped >= dateOrdered)
 );
