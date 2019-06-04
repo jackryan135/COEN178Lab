@@ -1,0 +1,112 @@
+SQL> start Q1.sql
+
+PROJE TITLE                MANAG                                                                                        
+----- -------------------- -----                                                                                        
+pj1   Research             e1                                                                                           
+pj4   Development          e4                                                                                           
+
+TITLE                MANAG                                                                                              
+-------------------- -----                                                                                              
+Research             e2                                                                                                 
+Development          e3                                                                                                 
+
+PROJE TITLE                    BUDGET STARTDATE ENDDATE   MANAG                                                         
+----- -------------------- ---------- --------- --------- -----                                                         
+pj1   Research                1000000 10-JAN-19 20-FEB-20 e1                                                            
+pj2   Research                 100000 10-FEB-19 20-APR-19 e2                                                            
+pj3   Development             1500000 10-APR-19 10-MAY-19 e3                                                            
+pj4   Development              200000 10-MAY-19 10-JUN-19 e4                                                            
+p99   Testing                                             e2                                                            
+insert into PastProjects values ('Testing','e2')
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("JRYAN"."PROJECT7"."PROJECTID") 
+
+
+
+PROJE PROJECT_TITLE        MANAGERNAME                                                                                  
+----- -------------------- --------------------                                                                         
+pj1   Research             J.Smith                                                                                      
+pj2   Research             M.Jones                                                                                      
+pj3   Development          D.Clark                                                                                      
+pj4   Development          J.Ryan                                                                                       
+p99   Testing              M.Jones                                                                                      
+insert into ManagedProjects values ('p88','Design','Mary Mason')
+*
+ERROR at line 1:
+ORA-01776: cannot modify more than one base table through a join view 
+
+
+SQL> start Q4.sql
+No errors.
+Insert into ItemOrder values ('o1',100)
+            *
+ERROR at line 1:
+ORA-04091: table JRYAN.ITEMORDER is mutating, trigger/function may not see it 
+ORA-06512: at "JRYAN.ITEMORDER_AFTER_INSERT_TRIG", line 5 
+ORA-04088: error during execution of trigger 'JRYAN.ITEMORDER_AFTER_INSERT_TRIG' 
+
+
+SQL> start Q5.sql
+No errors.
+
+  COURSENO   PREREQNO                                                                                                   
+---------- ----------                                                                                                   
+       121         11                                                                                                   
+       121         10                                                                                                   
+insert into Course_Prereq values (121,12)
+            *
+ERROR at line 1:
+ORA-20000: Only 2 prereqs for course 
+ORA-06512: at "JRYAN.LIMITTEST", line 16 
+ORA-04088: error during execution of trigger 'JRYAN.LIMITTEST' 
+
+
+
+  COURSENO   PREREQNO                                                                                                   
+---------- ----------                                                                                                   
+       121         11                                                                                                   
+       121         10                                                                                                   
+
+  COURSENO   PREREQNO                                                                                                   
+---------- ----------                                                                                                   
+       121         11                                                                                                   
+       121         10                                                                                                   
+       133         12                                                                                                   
+update COURSE_PREREQ
+       *
+ERROR at line 1:
+ORA-04091: table JRYAN.COURSE_PREREQ is mutating, trigger/function may not see it 
+ORA-06512: at "JRYAN.LIMITTEST", line 6 
+ORA-04088: error during execution of trigger 'JRYAN.LIMITTEST' 
+
+
+
+  COURSENO   PREREQNO                                                                                                   
+---------- ----------                                                                                                   
+       121         11                                                                                                   
+       121         10                                                                                                   
+       133         12                                                                                                   
+SQL> start Q6.sql
+No errors.
+insert into Course_Prereq values (121,12)
+            *
+ERROR at line 1:
+ORA-20000: Only 2 prereqs for course 
+ORA-06512: at "JRYAN.LIMITTEST", line 21 
+ORA-04088: error during execution of trigger 'JRYAN.LIMITTEST' 
+
+
+
+  COURSENO   PREREQNO                                                                                                   
+---------- ----------                                                                                                   
+       121         11                                                                                                   
+       121         10                                                                                                   
+       133         12                                                                                                   
+
+  COURSENO   PREREQNO                                                                                                   
+---------- ----------                                                                                                   
+       121         11                                                                                                   
+       121         10                                                                                                   
+       121         12                                                                                                   
+SQL> spool off;

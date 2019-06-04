@@ -1,0 +1,406 @@
+SQL> start Q1.sql
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Trigger created.
+
+No errors.
+From Trigger Customer NO: c1 Customer Name: Smith                               
+
+1 row created.
+
+From Trigger Customer NO: c2 Customer Name: Jones                               
+
+1 row created.
+
+From Trigger Customer NO: c3 Customer Name: Peters                              
+
+1 row created.
+
+From Trigger Customer NO: c20 Customer Name: Chen                               
+
+1 row created.
+
+From Trigger Customer NO: c33 Customer Name: Williams                           
+
+1 row created.
+
+
+Trigger created.
+
+No errors.
+From Trigger Customer NO: c4 Customer Name: Ryan City: SJ                       
+
+1 row created.
+
+From Trigger Customer NO: c5 Customer Name: Hayes City: SJ                      
+
+1 row created.
+
+From Trigger Customer NO: c6 Customer Name: Phillips City: SFO                  
+
+1 row created.
+
+From Trigger Customer NO: c21 Customer Name: Melvin City: LA                    
+
+1 row created.
+
+From Trigger Customer NO: c34 Customer Name: Anderson City: SFO                 
+
+1 row created.
+
+SQL> start Q2.sql
+
+Trigger altered.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table created.
+
+
+Table created.
+
+
+Trigger created.
+
+No errors.
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+CUSTN TOTALAMOUNT                                                               
+----- -----------                                                               
+c1           7000                                                               
+c2           9000                                                               
+c33           500                                                               
+c20           150                                                               
+
+
+ACCOU ACCOUNTTYP     AMOUNT CUSTN                                               
+----- ---------- ---------- -----                                               
+a1523 checking         2000 c1                                                  
+a2134 saving           5000 c1                                                  
+a4378 checking         1000 c2                                                  
+a5363 saving           8000 c2                                                  
+a7236 checking          500 c33                                                 
+a8577 checking          150 c20                                                 
+
+6 rows selected.
+
+SQL> start Q3.sql
+
+1 row updated.
+
+
+CUSTN TOTALAMOUNT                                                               
+----- -----------                                                               
+c1           7000                                                               
+c2           9000                                                               
+c33           500                                                               
+c20           150                                                               
+
+
+CUSTN TOTALAMOUNT                                                               
+----- -----------                                                               
+c1           7000                                                               
+
+
+ACCOU ACCOUNTTYP     AMOUNT CUSTN                                               
+----- ---------- ---------- -----                                               
+a1523 checking         1000 c1                                                  
+a2134 saving           5000 c1                                                  
+
+SQL> start Q4.sql
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table created.
+
+
+Table created.
+
+
+Trigger created.
+
+No errors.
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+CUSTN TOTALAMOUNT                                                               
+----- -----------                                                               
+c1           7000                                                               
+c2           9000                                                               
+c33           500                                                               
+c20           150                                                               
+
+
+ACCOU ACCOUNTTYP     AMOUNT CUSTN                                               
+----- ---------- ---------- -----                                               
+a1523 checking         2000 c1                                                  
+a2134 saving           5000 c1                                                  
+a4378 checking         1000 c2                                                  
+a5363 saving           8000 c2                                                  
+a7236 checking          500 c33                                                 
+a8577 checking          150 c20                                                 
+
+6 rows selected.
+
+
+CUSTN TOTALAMOUNT                                                               
+----- -----------                                                               
+c1           7000                                                               
+
+
+1 row updated.
+
+
+CUSTN TOTALAMOUNT                                                               
+----- -----------                                                               
+c1           6000                                                               
+c2           9000                                                               
+c33           500                                                               
+c20           150                                                               
+
+
+ACCOU ACCOUNTTYP     AMOUNT CUSTN                                               
+----- ---------- ---------- -----                                               
+a1523 checking         1000 c1                                                  
+a2134 saving           5000 c1                                                  
+a4378 checking         1000 c2                                                  
+a5363 saving           8000 c2                                                  
+a7236 checking          500 c33                                                 
+a8577 checking          150 c20                                                 
+
+6 rows selected.
+
+
+CUSTN TOTALAMOUNT                                                               
+----- -----------                                                               
+c1           6000                                                               
+
+SQL> start Q5.sql
+
+Trigger created.
+
+No errors.
+
+CUSTN CUSTNAME             STREET                         CITY                  
+----- -------------------- ------------------------------ --------------------  
+c1    Smith                32 Lincoln st                  SJ                    
+c2    Jones                44 Benton st                   SJ                    
+c3    Peters               12 palm st                     SFO                   
+c20   Chen                 20 san felipo                  LA                    
+c33   Williams              11 cherry Ave                 SFO                   
+c4    Ryan                 33 Lincoln st                  SJ                    
+c5    Hayes                45 Benton st                   SJ                    
+c6    Phillips             13 palm st                     SFO                   
+c21   Melvin               21 san felipo                  LA                    
+c34   Anderson              12 cherry Ave                 SFO                   
+
+10 rows selected.
+
+UPDATE BANKCUST_6 Set custno='c99' Where custno='c1'
+       *
+ERROR at line 1:
+ORA-20999: Cannot update a Primary Key 
+ORA-06512: at "JRYAN.NOUPDATEPK_TRIG", line 3 
+ORA-04088: error during execution of trigger 'JRYAN.NOUPDATEPK_TRIG' 
+
+
+
+CUSTN CUSTNAME             STREET                         CITY                  
+----- -------------------- ------------------------------ --------------------  
+c1    Smith                32 Lincoln st                  SJ                    
+c2    Jones                44 Benton st                   SJ                    
+c3    Peters               12 palm st                     SFO                   
+c20   Chen                 20 san felipo                  LA                    
+c33   Williams              11 cherry Ave                 SFO                   
+c4    Ryan                 33 Lincoln st                  SJ                    
+c5    Hayes                45 Benton st                   SJ                    
+c6    Phillips             13 palm st                     SFO                   
+c21   Melvin               21 san felipo                  LA                    
+c34   Anderson              12 cherry Ave                 SFO                   
+
+10 rows selected.
+
+SQL> start Q6.sql
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+Trigger created.
+
+No errors.
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+STN COURS                                                                       
+--- -----                                                                       
+s1  c1                                                                          
+s1  c3                                                                          
+
+No prereq                                                                       
+insert into M_courseRegister values('s1','c4')
+            *
+ERROR at line 1:
+ORA-20010: prereqs not done 
+ORA-06512: at "JRYAN.CHECKPREREQ_TRIG", line 20 
+ORA-04088: error during execution of trigger 'JRYAN.CHECKPREREQ_TRIG' 
+
+
+
+STN COURS                                                                       
+--- -----                                                                       
+s1  c1                                                                          
+s1  c3                                                                          
+
+
+STN COURS                                                                       
+--- -----                                                                       
+s1  c1                                                                          
+s1  c3                                                                          
+
+
+1 row created.
+
+
+1 row created.
+
+
+STN COURS                                                                       
+--- -----                                                                       
+s1  c1                                                                          
+s1  c3                                                                          
+s1  c2                                                                          
+s1  c4                                                                          
+
+No prereq                                                                       
+insert into M_courseRegister values('s2','c4')
+            *
+ERROR at line 1:
+ORA-20010: prereqs not done 
+ORA-06512: at "JRYAN.CHECKPREREQ_TRIG", line 20 
+ORA-04088: error during execution of trigger 'JRYAN.CHECKPREREQ_TRIG' 
+
+
+SQL> spool off;
