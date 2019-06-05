@@ -84,17 +84,18 @@ Show Errors;
 
 
 
-DECLARE
-	l_price StoreItems.price%type;
-	l_num Orders.numItems%type;
-	l_itemID Orders.itemID%type;
-	l_fee Orders.shippingFee%type;
-	l_discount NUMBER(9,2);
-	l_subtotal StoreItems.price%type;
-	l_tax StoreItems.price%type;
+
 FUNCTION calcTotal(p_orderID in Orders.orderID%type)
 RETURN NUMBER IS
 	l_total StoreItems.price%type;
+
+	l_price StoreItems.price%type;
+        l_num Orders.numItems%type;
+        l_itemID Orders.itemID%type;
+        l_fee Orders.shippingFee%type;
+        l_discount NUMBER(9,2);
+        l_subtotal StoreItems.price%type;
+        l_tax StoreItems.price%type;
 BEGIN
 		SELECT itemID INTO l_itemID FROM Orders WHERE orderID = p_orderID;
 		SELECT price INTO l_price FROM StoreItems WHERE itemID = l_itemID;
@@ -102,11 +103,11 @@ BEGIN
 		SELECT shippingFee INTO l_fee FROM Orders WHERE orderID = p_orderID;
 
 		l_subtotal := l_price * l_num;
-
-	IF l_fee = 0.00 AND l_subtotal >= 100.00 THEN l_discount := 0.10;
-	ELSE
-		l_discount := 0.00
-END IF;
+	BEGIN
+		IF l_fee = 0.00 AND l_subtotal >= 100.00 THEN l_discount := 0.10;
+		ELSE
+			l_discount := 0.00
+	END IF;
 
 	l_discount := l_discount * l_subtotal;
 	l_subtotal := l_subtotal - l_discount;
