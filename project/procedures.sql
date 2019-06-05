@@ -112,14 +112,12 @@ BEGIN
 		l_discount := 0.00
 	END IF;
 
-	BEGIN
-		l_discount := l_discount * l_subtotal;
-		l_subtotal := l_subtotal - l_discount;
-		l_tax := l_subtotal * 0.05;
-		l_subtotal := l_subtotal + l_tax;
+	l_discount := l_discount * l_subtotal;
+	l_subtotal := l_subtotal - l_discount;
+	l_tax := l_subtotal * 0.05;
+	l_subtotal := l_subtotal + l_tax;
 	
-		l_total := l_subtotal + l_fee;
-	END;
+	l_total := l_subtotal + l_fee;
 
 	RETURN l_total;
 END;
