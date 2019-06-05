@@ -12,9 +12,9 @@ BEGIN
 	SELECT membership INTO l_membership FROM Customers WHERE custID = p_custID;
 
 	IF l_membership = 'regular' THEN
-		{SET l_fee = 10.00;}
+		SET l_fee = 10.00;
 	ELSEIF l_membership = 'gold' THEN
-		{SET l_fee = 0.00;}
+		SET l_fee = 0.00;
 	ELSE
 		RAISE invalidMembership;
 	END IF;
