@@ -92,7 +92,7 @@ DECLARE
 	l_discount NUMBER(9,2);
 	l_subtotal StoreItems.price%type;
 	l_tax StoreItems.price%type;
-CREATE OR REPLACE FUNCTION calcTotal(p_orderID in Orders.orderID%type)
+FUNCTION calcTotal(p_orderID in Orders.orderID%type)
 RETURN NUMBER IS
 	l_total StoreItems.price%type;
 BEGIN
