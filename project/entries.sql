@@ -19,3 +19,9 @@ INSERT INTO StoreItems VALUES ('0005', 9.75);
 INSERT INTO TShirts VALUES ('0005', 'M');
 INSERT INTO StoreItems VALUES ('0006', 11.25);
 INSERT INTO TShirts VALUES ('0006', 'S');
+
+
+SELECT * FROM Customers;
+SELECT * FROM StoreItems;
+SELECT * FROM ComicBooks;
+SELECT * FROM TShirts;
