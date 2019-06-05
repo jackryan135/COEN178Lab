@@ -86,6 +86,7 @@ Show Errors;
 
 
 CREATE OR REPLACE FUNCTION calcTotal(p_orderID in Orders.orderID%type)
+FOR EACH ROW
 RETURN NUMBER IS
 	l_total StoreItems.price%type;
 
