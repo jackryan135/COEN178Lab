@@ -37,18 +37,20 @@ FOR EACH ROW
 DECLARE
 	l_custID Orders.custID%type;
 	l_fee Orders.shippingFee%type;
+	l_membership Customers.membership%type;
 BEGIN
 	BEGIN
 		SELECT custID INTO l_custID FROM Customers;
+		SELECT membership INTO l_membership FROM Customers;
 	END;
 
-	IF (SELECT membership FROM Customers WHERE custID = l_custID) = 'gold' THEN
+	IF l_membership = 'gold' THEN
 		l_fee := 0.00;
 	ELSE
 		l_fee := 10.00;	  
 	END IF;
 
-	UPDATE Orders SET shippingFee = l_fee WHERE custID = l_custID;
+	UPDATE Orders SET shippingFee = l_fee WHERE Orders.custID = l_custID;
 END;
 /
 show errors;
