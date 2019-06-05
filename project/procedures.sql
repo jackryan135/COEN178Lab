@@ -87,12 +87,17 @@ Show Errors;
 
 CREATE OR REPLACE FUNCTION calcTotal(p_orderID in Orders.orderID%type)
 RETURN NUMBER IS
-    l_total StoreItems.price%type;     -- Give the data type
-
+	l_total StoreItems.price%type;
+DECLARE
+	l_price StoreItems.price%type;
+	l_num Orders.numItems%type;
+	l_itemID Orders.itemID%type;
 BEGIN
-
-    l_total := (SELECT price FROM StoreItems WHERE itemID = (SELECT itemID FROM Orders WHERE orderID = p_orderID)) * (SELECT numItems FROM Orders WHERE orderID = p_orderID);
-    return l_total;
+	SELECT itemID INTO l_itemID FROM Orders WHERE orderID = p_orderID;
+	SELECT price INTO l_price FROM StoreItems WHERE itemID = l_itemID;
+	SELECT numItems INTO l_num FROM Orders WHERE orderID = p_orderID;
+	l_total := l_price * l_num;
+	RETURN l_total;
 END;
 /
 show errors;
