@@ -97,16 +97,16 @@ RETURN NUMBER IS
         l_subtotal StoreItems.price%type;
         l_tax StoreItems.price%type;
 BEGIN
-		SELECT itemID INTO l_itemID FROM Orders WHERE orderID = p_orderID;
-		SELECT price INTO l_price FROM StoreItems WHERE itemID = l_itemID;
-		SELECT numItems INTO l_num FROM Orders WHERE orderID = p_orderID;
-		SELECT shippingFee INTO l_fee FROM Orders WHERE orderID = p_orderID;
+	SELECT itemID INTO l_itemID FROM Orders WHERE orderID = p_orderID;
+	SELECT price INTO l_price FROM StoreItems WHERE itemID = l_itemID;
+	SELECT numItems INTO l_num FROM Orders WHERE orderID = p_orderID;
+	SELECT shippingFee INTO l_fee FROM Orders WHERE orderID = p_orderID;
 
-		l_subtotal := l_price * l_num;
-	BEGIN
-		IF l_fee = 0.00 AND l_subtotal >= 100.00 THEN l_discount := 0.10;
-		ELSE
-			l_discount := 0.00;
+	l_subtotal := l_price * l_num;
+
+	IF l_fee = 0.00 AND l_subtotal >= 100.00 THEN l_discount := 0.10;
+	ELSE
+		l_discount := 0.00;
 	END IF;
 
 	l_discount := l_discount * l_subtotal;
