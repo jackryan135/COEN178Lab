@@ -28,3 +28,27 @@ EXCEPTION
 END;
 /
 Show Errors;
+
+
+
+CREATE OR REPLACE TRIGGER memberUpdate
+AFTER UPDATE ON Customers
+FOR EACH ROW
+DECLARE
+	l_custID Orders.custID%type;
+	l_fee Orders.shippingFee%type;
+BEGIN
+	BEGIN
+		SELECT custID INTO l_custID FROM Customers;
+	END;
+
+	IF membership = 'gold' THEN
+		l_fee := 0.00;
+	ELSE
+		l_fee := 10.00;	  
+	END IF;
+
+	UPDATE Orders SET shippingFee = l_fee WHERE custID = l_custID;
+END;
+/
+show errors;
