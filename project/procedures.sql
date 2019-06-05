@@ -42,7 +42,7 @@ BEGIN
 		SELECT custID INTO l_custID FROM Customers;
 	END;
 
-	IF Customers.membership = 'gold' THEN
+	IF (SELECT membership FROM Customers WHERE custID = l_custID) = 'gold' THEN
 		l_fee := 0.00;
 	ELSE
 		l_fee := 10.00;	  
