@@ -13,7 +13,7 @@ BEGIN
 
 	IF(l_membership = 'regular') THEN
 		l_fee := 10.00;
-	ELSEIF(l_membership = 'gold')
+	ELSEIF(l_membership = 'gold') THEN
 		l_fee := 0.00;
 	ELSE
 		RAISE invalidMembership;
