@@ -31,6 +31,8 @@ Show Errors;
 
 
 
+
+
 CREATE OR REPLACE TRIGGER memberUpdate
 AFTER UPDATE ON Customers
 FOR EACH ROW
@@ -58,6 +60,7 @@ show errors;
 
 
 
+
 Create or Replace Procedure setShipDate(p_orderID in Orders.orderID%type, p_dateShipped in Orders.dateShipped%type)
 IS
 
@@ -80,3 +83,16 @@ END;
 Show Errors;
 
 
+
+
+CREATE OR REPLACE FUNCTION calcTotal(p_orderID in Orders.orderID%type)
+RETURN NUMBER IS
+    l_total StoreItems.price%type;     -- Give the data type
+
+BEGIN
+
+    l_total := (SELECT price FROM StoreItems WHERE itemID = (SELECT itemID FROM Orders WHERE orderID = p_orderID)) * (SELECT numItems FROM Orders WHERE orderID = p_orderID);
+    return l_total;
+END;
+/
+show errors;
