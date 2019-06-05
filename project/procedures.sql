@@ -14,7 +14,7 @@ END;
 BEGIN
 	IF(l_membership = 'regular') THEN
 		l_fee := 10.00;
-	ELSEIF(l_membership = 'gold') THEN
+	ELSEIF(l_membership = 'gold')
 		l_fee := 0.00;
 	ELSE
 		RAISE invalidMembership;
@@ -30,6 +30,6 @@ END IF;
 EXCEPTION
 	WHEN soldOut THEN DBMS_OUTPUT.PUT_LINE('Not enough items to fulfill order.');
 	WHEN invalidMembership THEN DBMS_OUTPUT.PUT_LINE('Membership tier not valid.');
-END addItemOrder;
+END;
 /
 Show Errors;
