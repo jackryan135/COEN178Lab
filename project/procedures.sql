@@ -10,26 +10,26 @@ IS
 BEGIN
 	SELECT NumCopies INTO l_numCopies FROM ComicBooks WHERE itemID = p_itemID;
 	SELECT membership INTO l_membership FROM Customers WHERE custID = p_custID;
-
+END;
+BEGIN
 	IF(l_membership = 'regular') THEN
 		l_fee := 10.00;
 	ELSEIF(l_membership = 'gold') THEN
 		l_fee := 0.00;
 	ELSE
 		RAISE invalidMembership;
-	END IF;
+END IF;
 
+BEGIN
 	IF (l_numCopies >= p_numItems) THEN
 		INSERT INTO Orders VALUES (p_orderID, p_custID, p_itemID, p_dateOrdered, p_numItems, NULL, l_fee);
 		UPDATE ComicBooks SET NumCopies = l_numCopies - p_numItems WHERE itemID = p_itemID;
 	ELSE
 		RAISE soldOut;
-	END IF;
-
-END;
+END IF;
 EXCEPTION
 	WHEN soldOut THEN DBMS_OUTPUT.PUT_LINE('Not enough items to fulfill order.');
 	WHEN invalidMembership THEN DBMS_OUTPUT.PUT_LINE('Membership tier not valid.');
-END;
+END addItemOrder;
 /
 Show Errors;
