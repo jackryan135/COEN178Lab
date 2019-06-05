@@ -11,15 +11,15 @@ BEGIN
 	SELECT NumCopies INTO l_numCopies FROM ComicBooks WHERE itemID = p_itemID;
 	SELECT membership INTO l_membership FROM Customers WHERE custID = p_custID;
 
-	IF l_membership = 'regular' THEN
-		SET l_fee = 10.00;
-	ELSEIF l_membership = 'gold' THEN
-		SET l_fee = 0.00;
+	IF(l_membership = 'regular') THEN
+		SET l_fee := 10.00;
+	ELSEIF(l_membership = 'gold') THEN
+		SET l_fee := 0.00;
 	ELSE
 		RAISE invalidMembership;
 	END IF;
 
-	IF l_numCopies >= p_numItems THEN
+	IF (l_numCopies >= p_numItems) THEN
 		INSERT INTO Orders VALUES (p_orderID, p_custID, p_itemID, p_dateOrdered, p_numItems, NULL, l_fee);
 		UPDATE ComicBooks SET NumCopies = l_numCopies - p_numItems WHERE itemID = p_itemID;
 	ELSE
