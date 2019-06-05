@@ -54,3 +54,29 @@ BEGIN
 END;
 /
 show errors;
+
+
+
+
+Create or Replace Procedure setShipDate(p_orderID in Orders.orderID%type, p_dateShipped in Orders.dateShipped%type)
+IS
+
+	invalidDate EXCEPTION;
+	l_dateOrdered Orders.dateOrdered%type;
+
+BEGIN
+	SELECT dateOrdered INTO l_dateOrdered FROM Orders WHERE orderID = p_orderID;
+
+	IF (l_dateOrdered <= p_dateShipped) THEN
+		UPDATE Orders SET dateShipped = p_dateShipped WHERE orderID = p_orderID;
+	ELSE
+		RAISE invalidDate;
+END IF;
+
+EXCEPTION
+	WHEN invalidDate THEN DBMS_OUTPUT.PUT_LINE('Ship date before order date.');
+END;
+/
+Show Errors;
+
+
