@@ -84,12 +84,7 @@ Show Errors;
 
 
 
-
-CREATE OR REPLACE FUNCTION calcTotal(p_orderID in Orders.orderID%type)
-FOR EACH ROW
-RETURN NUMBER IS
-	l_total StoreItems.price%type;
-
+DECLARE
 	l_price StoreItems.price%type;
 	l_num Orders.numItems%type;
 	l_itemID Orders.itemID%type;
@@ -97,7 +92,9 @@ RETURN NUMBER IS
 	l_discount NUMBER(9,2);
 	l_subtotal StoreItems.price%type;
 	l_tax StoreItems.price%type;
-	
+CREATE OR REPLACE FUNCTION calcTotal(p_orderID in Orders.orderID%type)
+RETURN NUMBER IS
+	l_total StoreItems.price%type;
 BEGIN
 		SELECT itemID INTO l_itemID FROM Orders WHERE orderID = p_orderID;
 		SELECT price INTO l_price FROM StoreItems WHERE itemID = l_itemID;
