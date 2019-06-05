@@ -120,3 +120,48 @@ BEGIN
 END;
 /
 show errors;
+
+
+
+
+Create or Replace Procedure orderDetails(p_custID in Orders.custID%type, p_date in Orders.dateOrdered%type)
+IS
+	l_custID Customers.custID%type;
+	l_name Customers.name%type;
+	l_email Customers.email%type;
+	l_address Customers.address%type;
+	l_orderID Orders.orderID%type;
+	l_itemID Orders.itemID%type;
+	l_title ComicBooks.Title%type;
+	l_price StoreItems.price%type;
+        l_dateOrdered Orders.dateOrdered%type;
+	l_dateShipped Orders.dateShipped%type;
+	l_itemTotal StoreItems.price%type;
+	l_tax StoreItems.price%type;
+	l_fee StoreItems.price%type;
+	l_discount StoreItems.price%type;
+	l_grandTotal StoreItems.price%type;
+	l_numItems INTEGER;
+	l_subtotal StoreItems.Price%type;
+BEGIN
+        SELECT custID INTO l_custID, name INTO l_name, email INTO l_email, address INTO l_address  FROM Customers WHERE custID = p_custID;
+
+        SELECT orderID INTO l_orderID, itemID INTO l_itemID, Title INTO l_title, price INTO l_price, dateOrdered INTO l_dateOrdered, numItems INTO l_numItems, dateShipped INTO l_dateShipped, shippingFee INTO l_fee FROM StoreItems UNION ComicBooks WHERE custID = p_custID AND dateOrdered >= p_dateOrdered;
+
+	l_subtotal := l_price * l_numItems;
+
+        IF l_fee = 0.00 AND l_subtotal >= 100.00 THEN l_discount := 0.10;
+        ELSE
+                l_discount := 0.00;
+        END IF;
+
+        l_discount := l_discount * l_subtotal;
+        l_subtotal := l_subtotal - l_discount;
+        l_tax := l_subtotal * 0.05;
+        l_subtotal := l_subtotal + l_tax;
+
+        l_total := l_subtotal + l_fee;
+
+END;
+/
+Show Errors;
