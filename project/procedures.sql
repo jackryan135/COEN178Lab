@@ -1,6 +1,5 @@
 Create or Replace Procedure addItemOrder( p_orderID in Orders.orderID%type, p_itemID IN Orders.itemID%type, p_custID in Orders.custID%type, p_dateOrdered in Orders.dateOrdered%type, p_numItems in Orders.numItems%type, p_dateShipped in Orders.dateShipped%type)
 IS
-DECLARE
 
 	soldOut EXCEPTION;
 	invalidMembership EXCEPTION;
@@ -13,9 +12,9 @@ BEGIN
 	SELECT membership INTO l_membership FROM Customers WHERE custID = p_custID;
 
 	IF l_membership = 'regular' THEN
-		{l_fee = 10.00;}
+		{SET l_fee = 10.00;}
 	ELSEIF l_membership = 'gold' THEN
-		{l_fee = 0.00;}
+		{SET l_fee = 0.00;}
 	ELSE
 		RAISE invalidMembership;
 	END IF;
