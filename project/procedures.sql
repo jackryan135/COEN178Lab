@@ -125,7 +125,6 @@ show errors;
 
 
 Create or Replace Procedure orderDetails(p_custID in Orders.custID%type, p_date in Orders.dateOrdered%type)
-FOR EACH ROW
 IS
 	l_custID Customers.custID%type;
 	l_name Customers.name%type;
@@ -144,24 +143,39 @@ IS
 	l_grandTotal StoreItems.price%type;
 	l_numItems INTEGER;
 	l_subtotal StoreItems.Price%type;
+	CURSOR c_comicBooks IS SELECT orderID, itemID, Title, price, dateOrdered, numItems, dateShipped, shippingFee FROM StoreItems UNION ComicBooks WHERE custID = p_custID AND dateOrdered >= p_dateOrdered;
+	CURSOR c_shirts IS SELECT orderID, itemID, price, dateOrdered, numItems, dateShipped, shippingFee, size FROM StoreItems UNION TShirts WHERE custID = p_custID AND dateOrdered >= p_dateOrdered;
+
 BEGIN
         SELECT custID INTO l_custID, name INTO l_name, email INTO l_email, address INTO l_address  FROM Customers WHERE custID = p_custID;
+	DBMS_OUTPUT.PUT_LINE('Customer Information:');
+	DBMS_OUTPUT.PUT_LINE('CustomerID: ' || l_custID || ' Name: ' || l_name || ' EMail: ' || l_email || ' Address: ' || l_address);
 
-        SELECT orderID INTO l_orderID, itemID INTO l_itemID, Title INTO l_title, price INTO l_price, dateOrdered INTO l_dateOrdered, numItems INTO l_numItems, dateShipped INTO l_dateShipped, shippingFee INTO l_fee FROM StoreItems UNION ComicBooks WHERE custID = p_custID AND dateOrdered >= p_dateOrdered;
 
-	l_subtotal := l_price * l_numItems;
+	DBMS_OUTPUT.PUT_LINE('Comic Book Orders:');
+	OPEN c_comicBooks;
+	LOOP
+	FETCH c_comicBooks INTO l_orderID, l_itemID, l_price, l_dateOrdered, l_numItems, l_dateShipped, l_fee;
+		EXIT WHEN c_comicBooks%notfound;
+		l_subtotal := l_price * l_numItems;
 
-        IF l_fee = 0.00 AND l_subtotal >= 100.00 THEN l_discount := 0.10;
-        ELSE
-                l_discount := 0.00;
-        END IF;
+        	IF l_fee = 0.00 AND l_subtotal >= 100.00 THEN l_discount := 0.10;
+        	ELSE
+                	l_discount := 0.00;
+        	END IF;
 
-        l_discount := l_discount * l_subtotal;
-        l_subtotal := l_subtotal - l_discount;
-        l_tax := l_subtotal * 0.05;
-        l_subtotal := l_subtotal + l_tax;
+        	l_discount := l_discount * l_subtotal;
+        	l_subtotal := l_subtotal - l_discount;
+        	l_tax := l_subtotal * 0.05;
+        	l_subtotal := l_subtotal + l_tax;
 
-        l_total := l_subtotal + l_fee;
+        	l_total := l_subtotal + l_fee;
+		l_grandTotal := l_grandTotal + l_total;
+		DBMS_OUTPUT.PUT_LINE('OrderID: ' || l_orderID || ' ItemID: ' || l_itemID || ' Price: ' || l_price || ' Date Ordered: ' || l_dateOrdered || ' Number of Items: ' || l_numItems || ' Date Shipped ' || l_dateShipped || ' Shipping Fee: ' || l_fee || ' Discount: ' || l_discount || ' Tax: ' || l_tax);
+	END LOOP;
+	CLOSE c_comicBooks;
+
+	DBMS_OUTPUT.PUT_LINE(' GRAND TOTAL: ' || l_grandTotal);
 
 END;
 /
