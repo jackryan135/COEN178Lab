@@ -125,6 +125,7 @@ show errors;
 
 
 Create or Replace Procedure orderDetails(p_custID in Orders.custID%type, p_date in Orders.dateOrdered%type)
+FOR EACH ROW
 IS
 	l_custID Customers.custID%type;
 	l_name Customers.name%type;
