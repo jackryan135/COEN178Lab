@@ -140,14 +140,14 @@ IS
 	l_tax StoreItems.price%type;
 	l_fee StoreItems.price%type;
 	l_discount StoreItems.price%type;
-	l_grandTotal StoreItems.price%type;
+	l_grandTotal StoreItems.price%type := 0.00;
 	l_numItems INTEGER;
 	l_subtotal StoreItems.Price%type;
 	CURSOR c_comicBooks IS SELECT orderID, itemID, Title, price, dateOrdered, numItems, dateShipped, shippingFee FROM StoreItems UNION ComicBooks WHERE custID = p_custID AND dateOrdered >= p_dateOrdered;
 	CURSOR c_shirts IS SELECT orderID, itemID, price, dateOrdered, numItems, dateShipped, shippingFee, size FROM StoreItems UNION TShirts WHERE custID = p_custID AND dateOrdered >= p_dateOrdered;
 
 BEGIN
-        SELECT custID INTO l_custID, name INTO l_name, email INTO l_email, address INTO l_address  FROM Customers WHERE custID = p_custID;
+        SELECT custID INTO l_custID, name INTO l_name, email INTO l_email, address INTO l_address FROM Customers WHERE custID = p_custID;
 	DBMS_OUTPUT.PUT_LINE('Customer Information:');
 	DBMS_OUTPUT.PUT_LINE('CustomerID: ' || l_custID || ' Name: ' || l_name || ' EMail: ' || l_email || ' Address: ' || l_address);
 
