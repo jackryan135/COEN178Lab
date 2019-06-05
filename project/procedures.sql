@@ -106,7 +106,7 @@ BEGIN
 	BEGIN
 		IF l_fee = 0.00 AND l_subtotal >= 100.00 THEN l_discount := 0.10;
 		ELSE
-			l_discount := 0.00
+			l_discount := 0.00;
 	END IF;
 
 	l_discount := l_discount * l_subtotal;
