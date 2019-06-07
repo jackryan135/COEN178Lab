@@ -40,6 +40,7 @@ DECLARE
 	l_custID Orders.custID%type;
 	l_fee Orders.shippingFee%type;
 	l_membership Customers.membership%type;
+	pragma autonomous_transaction;
 BEGIN
 	BEGIN
 		SELECT custID INTO l_custID FROM Customers;
