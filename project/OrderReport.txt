@@ -1,0 +1,50 @@
+
+                                                  Customer Order Report                                                 
+                                                                                                                        
+                                                  Customer Information                                                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                      June 6, 2019                                                      
+
+                                                  Customer Order Report                                                 
+                                                                                                                        
+Customer I Name       EMail      Address    Date Joine Member Lev                                                       
+---------- ---------- ---------- ---------- ---------- ----------                                                       
+0001       Jack       jack@scu.e 1050 Bento 05-JUN-19  gold                                                             
+                      du         n St                                                                                   
+                                                                                                                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                      June 6, 2019                                                      
