@@ -17,7 +17,7 @@ BEGIN
 		RAISE invalidMembership;
 END IF;
 
-	IF p_itemID IN (SELECT itemID FROM ComicBooks) THEN
+	IF EXISTS (SELECT * FROM ComicBooks WHERE itemID = p_itemID) THEN
 		SELECT NumCopies INTO l_numCopies FROM ComicBooks WHERE itemID = p_itemID;
 		IF (l_numCopies >= p_numItems) THEN 
 			INSERT INTO Orders VALUES (p_orderID, p_custID, p_itemID, p_dateOrdered, p_numItems, NULL, l_fee);
