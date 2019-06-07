@@ -145,7 +145,7 @@ IS
 	l_subtotal StoreItems.Price%type;
 
 BEGIN
-        SELECT custID INTO l_custID, name INTO l_name, email INTO l_email, address INTO l_address FROM Customers WHERE custID = p_custID;
+        SELECT custID, name, email, address INTO l_custID, l_name, l_email, l_address FROM Customers WHERE custID = p_custID;
 	DBMS_OUTPUT.PUT_LINE('Customer Information:');
 	DBMS_OUTPUT.PUT_LINE('CustomerID: ' || l_custID || ' Name: ' || l_name || ' EMail: ' || l_email || ' Address: ' || l_address);
 
