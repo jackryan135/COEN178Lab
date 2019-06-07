@@ -144,6 +144,7 @@ IS
 	l_numItems INTEGER;
 	l_subtotal StoreItems.Price%type;
 	CURSOR c_comicBooks IS SELECT orderID, custID, itemID, Title, price, dateOrdered, dateShipped, numItems, shippingFee FROM (ComicBooks JOIN Orders USING(itemID)) JOIN StoreItems USING(itemID);
+	CURSOR c_shirts IS SELECT orderID, custID, itemID, shirtSize, price, numItems, dateOrdered, dateShipped, shippingFee FROM (TShirts JOIN Orders USING(itemID)) JOIN StoreItems USING(itemID);
 
 BEGIN
         SELECT custID, name, email, address INTO l_custID, l_name, l_email, l_address FROM Customers WHERE custID = p_custID;
