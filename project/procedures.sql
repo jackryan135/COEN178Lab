@@ -17,10 +17,16 @@ BEGIN
 		RAISE invalidMembership;
 END IF;
 
-	IF (l_numCopies >= p_numItems) THEN INSERT INTO Orders VALUES (p_orderID, p_custID, p_itemID, p_dateOrdered, p_numItems, NULL, l_fee);
-		UPDATE ComicBooks SET NumCopies = l_numCopies - p_numItems WHERE itemID = p_itemID;
+	IF p_itemID IN ComicBooks THEN
+		SELECT NumCopies INTO l_numCopies FROM ComicBooks WHERE itemID = p_itemID;
+		IF (l_numCopies >= p_numItems) THEN 
+			INSERT INTO Orders VALUES (p_orderID, p_custID, p_itemID, p_dateOrdered, p_numItems, NULL, l_fee);
+			UPDATE ComicBooks SET NumCopies = l_numCopies - p_numItems WHERE itemID = p_itemID;
+		ELSE
+			RAISE soldOut;
 	ELSE
-		RAISE soldOut;
+		INSERT INTO Orders VALUES (p_orderID, p_custID, p_itemID, p_dateOrdered, p_numItems, NULL, l_fee);
+	END IF;
 END IF;
 EXCEPTION
 	WHEN soldOut THEN DBMS_OUTPUT.PUT_LINE('Not enough items to fulfill order.');
