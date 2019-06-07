@@ -43,8 +43,8 @@ DECLARE
 	pragma autonomous_transaction;
 BEGIN
 	BEGIN
-		SELECT custID INTO l_custID FROM Customers;
-		SELECT membership INTO l_membership FROM Customers;
+		SELECT custID INTO l_custID FROM Customers WHERE :new.membership != :old.membership;
+		SELECT membership INTO l_membership FROM Customers WHERE :new.membership != :old.membership;
 	END;
 
 	IF l_membership = 'gold' THEN
