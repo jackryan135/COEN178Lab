@@ -94,3 +94,4 @@ SET FEEDBACK OFF
 SET RECSEP OFF
 SET ECHO OFF
 set termout on
+set serverout on
