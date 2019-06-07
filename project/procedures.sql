@@ -34,17 +34,16 @@ Show Errors;
 
 
 CREATE OR REPLACE TRIGGER memberUpdate
-BEFORE UPDATE ON Customers
+AFTER UPDATE OF membership ON Customers
 FOR EACH ROW
 DECLARE
 	l_custID Orders.custID%type;
 	l_fee Orders.shippingFee%type;
 	l_membership Customers.membership%type;
-	pragma autonomous_transaction;
 BEGIN
 	BEGIN
-		SELECT custID INTO l_custID FROM Customers WHERE :new.membership != :old.membership;
-		SELECT membership INTO l_membership FROM Customers WHERE :new.membership != :old.membership;
+		SELECT custID INTO l_custID FROM Customers;
+		SELECT membership INTO l_membership FROM Customers;
 	END;
 
 	IF l_membership = 'gold' THEN
