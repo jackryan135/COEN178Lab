@@ -29,4 +29,4 @@ END;
 
 exec orderDetails('0001', '01-JUN-19');
 
-start report
+start report;
