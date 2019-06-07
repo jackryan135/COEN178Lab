@@ -25,7 +25,6 @@ column address format a20 heading "Address"
 column dateJoined format a15 heading "Date Joined"
 column membership format a15 heading "Member Level"
 
-ON ROW SKIP 1
 
 select custID, name, email, address, dateJoined, membership
 from Customers WHERE custID = '0001';
