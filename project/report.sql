@@ -29,15 +29,15 @@ btitle center report_date
 --After the SPOOL command, anything entered or displayed on
 -- standard output is written to the spool file, report.html.
 
-spool OrderReport.txt
+spool OReport.txt
 
 -- change column headings and format number columns
-column custID format a10 heading "Customer ID"
+column custID format a15 heading "Customer ID"
 column name format a10 heading "Name"
-column email format a10 heading "EMail"
-column address format a10 heading "Address"
-column dateJoined format a10 heading "Date Joined"
-column membership format a10 heading "Member Level"
+column email format a20 heading "EMail"
+column address format a20 heading "Address"
+column dateJoined format a15 heading "Date Joined"
+column membership format a15 heading "Member Level"
 --column transportation format $9999999,999.99 heading "Transportation"
 --column misc format $9999999,999.99 heading "Misc."
 
