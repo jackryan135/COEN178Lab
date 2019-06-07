@@ -46,13 +46,13 @@ BEGIN
 		SELECT membership INTO l_membership FROM Customers;
 	END;
 */
-	IF :new.membership = 'gold' THEN
+	IF :old.membership = 'gold' THEN
 		l_fee := 0.00;
 	ELSE
 		l_fee := 10.00;	  
 	END IF;
 
-	UPDATE Orders SET shippingFee = l_fee WHERE Orders.custID = l_custID AND (CURRENT_DATE >= Orders.dateShipped OR Orders.dateShipped = NULL);
+	UPDATE Orders SET shippingFee = l_fee WHERE Orders.custID = l_custID AND (CURRENT_DATE <= Orders.dateShipped OR Orders.dateShipped = NULL);
 END;
 /
 show errors;
