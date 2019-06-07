@@ -37,15 +37,8 @@ CREATE OR REPLACE TRIGGER memberUpdate
 AFTER UPDATE OF membership ON Customers
 FOR EACH ROW
 DECLARE
-	l_custID Orders.custID%type;
 	l_fee Orders.shippingFee%type;
-	l_membership Customers.membership%type;
 BEGIN
-/*	BEGIN
-		SELECT custID INTO l_custID FROM Customers;
-		SELECT membership INTO l_membership FROM Customers;
-	END;
-*/
 	IF :new.membership = 'gold' THEN
 		l_fee := 0.00;
 	ELSE
