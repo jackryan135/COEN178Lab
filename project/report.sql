@@ -68,7 +68,7 @@ column dateShipped format a15 heading "Date Shipped"
 
 
 select orderID, itemID, Title, ISBN, numItems, price, dateOrdered, dateShipped
-from (Orders/* JOIN StoreItems USING(itemID)) JOIN ComicBooks USING(itemID)*/)  WHERE custID = '0001';
+from (Orders JOIN StoreItems USING(itemID)) JOIN ComicBooks USING(itemID))  WHERE custID = '0001';
 
 CLEAR COLUMNS
 
