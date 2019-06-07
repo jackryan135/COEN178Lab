@@ -143,6 +143,7 @@ IS
 	l_grandTotal StoreItems.price%type := 0.00;
 	l_numItems INTEGER;
 	l_subtotal StoreItems.Price%type;
+	l_shirtSize TShirts.shirtSize%type;
 	CURSOR c_comicBooks IS SELECT orderID, custID, itemID, Title, price, dateOrdered, dateShipped, numItems, shippingFee FROM (ComicBooks JOIN Orders USING(itemID)) JOIN StoreItems USING(itemID) WHERE custID = p_custID AND dateOrdered >= p_date;
 	CURSOR c_shirts IS SELECT orderID, custID, itemID, shirtSize, price, numItems, dateOrdered, dateShipped, shippingFee FROM (TShirts JOIN Orders USING(itemID)) JOIN StoreItems USING(itemID) WHERE custID = p_custID AND dateOrdered >= p_date;
 
@@ -170,9 +171,34 @@ BEGIN
 
         	l_itemTotal := l_subtotal + l_fee;
 		l_grandTotal := l_grandTotal + l_itemTotal;
-		DBMS_OUTPUT.PUT_LINE('OrderID: ' || l_orderID || ' ItemID: ' || l_itemID || ' Price: ' || l_price || ' Date Ordered: ' || l_dateOrdered || ' Number of Items: ' || l_numItems || ' Date Shipped ' || l_dateShipped || ' Shipping Fee: ' || l_fee || ' Discount: ' || l_discount || ' Tax: ' || l_tax || 'Order Total: ' || l_itemTotal);
+		DBMS_OUTPUT.PUT_LINE('OrderID: ' || l_orderID || ' ItemID: ' || l_itemID || ' Title:  ' || l_title || ' Price: ' || l_price || ' Date Ordered: ' || l_dateOrdered || ' Number of Items: ' || l_numItems || ' Date Shipped ' || l_dateShipped || ' Shipping Fee: ' || l_fee || ' Discount: ' || l_discount || ' Tax: ' || l_tax || 'Order Total: ' || l_itemTotal);
 	END LOOP;
 	CLOSE c_comicBooks;
+
+	
+	DBMS_OUTPUT.PUT_LINE('TShirt Orders:');
+	OPEN c_shirts;
+	LOOP
+	FETCH c_shirts INTO l_orderID, l_custID, l_itemID, l_shirtSize, l_price, l_numItems, l_dateOrdered, l_dateShipped, l_fee;
+		EXIT WHEN c_shirts%notfound;
+		l_subtotal := l_price * l_numItems;
+
+        	IF l_fee = 0.00 AND l_subtotal >= 100.00 THEN l_discount := 0.10;
+        	ELSE
+                	l_discount := 0.00;
+        	END IF;
+
+        	l_discount := l_discount * l_subtotal;
+        	l_subtotal := l_subtotal - l_discount;
+        	l_tax := l_subtotal * 0.05;
+        	l_subtotal := l_subtotal + l_tax;
+
+        	l_itemTotal := l_subtotal + l_fee;
+		l_grandTotal := l_grandTotal + l_itemTotal;
+		DBMS_OUTPUT.PUT_LINE('OrderID: ' || l_orderID || ' ItemID: ' || l_itemID || ' Shirt Size: ' || l_shirtSize || ' Price: ' || l_price || ' Date Ordered: ' || l_dateOrdered || ' Number of Items: ' || l_numItems || ' Date Shipped ' || l_dateShipped || ' Shipping Fee: ' || l_fee || ' Discount: ' || l_discount || ' Tax: ' || l_tax || 'Order Total: ' || l_itemTotal);
+	END LOOP;
+	CLOSE c_shirts;
+
 	DBMS_OUTPUT.PUT_LINE(' GRAND TOTAL: ' || l_grandTotal);
 END;
 /
