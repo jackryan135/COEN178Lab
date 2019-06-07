@@ -151,7 +151,6 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE('Customer Information:');
 	DBMS_OUTPUT.PUT_LINE('CustomerID: ' || l_custID || ' Name: ' || l_name || ' EMail: ' || l_email || ' Address: ' || l_address);
 
-/*
 	DBMS_OUTPUT.PUT_LINE('Comic Book Orders:');
 		l_subtotal := l_price * l_numItems;
 
@@ -170,7 +169,6 @@ BEGIN
 		DBMS_OUTPUT.PUT_LINE('OrderID: ' || l_orderID || ' ItemID: ' || l_itemID || ' Price: ' || l_price || ' Date Ordered: ' || l_dateOrdered || ' Number of Items: ' || l_numItems || ' Date Shipped ' || l_dateShipped || ' Shipping Fee: ' || l_fee || ' Discount: ' || l_discount || ' Tax: ' || l_tax);
 
 	DBMS_OUTPUT.PUT_LINE(' GRAND TOTAL: ' || l_grandTotal);
-*/
 END;
 /
 Show Errors;
