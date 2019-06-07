@@ -52,7 +52,38 @@ select custID,
 from Customers WHERE custID = '0001';
 spool off;
 
+
+CLEAR COLUMNS
+
+column orderID format a10 heading "Order ID"
+column itemID format a10 heading "Item ID"
+column Title format a15 heading "Title"
+column ISBN format a15 heading "ISBN"
+column numItems format a12 heading "No. Items"
+column price format $9999999,999.99 heading "Price"
+column dateOrdered format a15 heading "Date Ordered"
+column dateShipped format a15 heading "Date Shipped"
+--column transportation format $9999999,999.99 heading "Transportation"
+--column misc format $9999999,999.99 heading "Misc."
 --clear all formatting commands ...
+
+
+select orderID, itemID, Title, ISBN, numItems, price, dateOrdered, dateShipped
+from (Orders JOIN StoreItems USING(itemID)) JOIN ComicBooks USING(itemID)  WHERE custID = '0001';
+
+CLEAR COLUMNS
+
+column orderID format a10 heading "Order ID"
+column itemID format a10 heading "Item ID"
+column shirtSize format a11 heading "Shirt Size"
+column numItems format a12 heading "No. Items"
+column price format $9999999,999.99 heading "Price"
+column dateOrdered format a15 heading "Date Ordered"
+column dateShipped format a15 heading "Date Shipped"
+
+select orderID, itemID, shirtSize, numItems, price, dateOrdered, dateShipped
+from (Orders JOIN StoreItems USING(itemID)) JOIN TShirts USING(itemID)  WHERE custID = '0001';
+
 
 CLEAR COLUMNS
 CLEAR BREAK

@@ -52,7 +52,7 @@ BEGIN
 		l_fee := 10.00;	  
 	END IF;
 
-	UPDATE Orders SET shippingFee = l_fee WHERE Orders.custID = l_custID;
+	UPDATE Orders SET shippingFee = l_fee WHERE Orders.custID = l_custID AND CURRENT_DATE >= Orders.dateShipped;
 END;
 /
 show errors;
