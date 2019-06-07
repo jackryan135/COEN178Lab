@@ -38,9 +38,9 @@ AFTER UPDATE ON Customers
 FOR EACH ROW
 BEGIN
 	IF :new.membership = 'gold' THEN
-		UPDATE Orders SET shippingFee = 10.0 WHERE custID = :new.custID AND (SYSDATE() <= dateShipped OR dateShipped IS NULL);
-	ELSE
 		UPDATE Orders SET shippingFee = 0.0 WHERE custID = :new.custID AND (SYSDATE() <= dateShipped OR dateShipped IS NULL);
+	ELSE
+		UPDATE Orders SET shippingFee = 10.0 WHERE custID = :new.custID AND (SYSDATE() <= dateShipped OR dateShipped IS NULL);
 	END IF;
 END;
 /
