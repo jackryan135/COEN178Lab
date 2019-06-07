@@ -143,8 +143,6 @@ IS
 	l_grandTotal StoreItems.price%type := 0.00;
 	l_numItems INTEGER;
 	l_subtotal StoreItems.Price%type;
-	CURSOR c_comicBooks IS SELECT orderID, itemID, Title, price, dateOrdered, numItems, dateShipped, shippingFee FROM StoreItems UNION ComicBooks WHERE custID = p_custID AND dateOrdered >= p_dateOrdered;
-	CURSOR c_shirts IS SELECT orderID, itemID, price, dateOrdered, numItems, dateShipped, shippingFee, size FROM StoreItems UNION TShirts WHERE custID = p_custID AND dateOrdered >= p_dateOrdered;
 
 BEGIN
         SELECT custID INTO l_custID, name INTO l_name, email INTO l_email, address INTO l_address FROM Customers WHERE custID = p_custID;
@@ -153,11 +151,7 @@ BEGIN
 
 
 	DBMS_OUTPUT.PUT_LINE('Comic Book Orders:');
-	OPEN c_comicBooks;
-	LOOP
-	FETCH c_comicBooks INTO l_orderID, l_itemID, l_price, l_dateOrdered, l_numItems, l_dateShipped, l_fee;
-		EXIT WHEN c_comicBooks%notfound;
-		l_subtotal := l_price * l_numItems;
+		/*l_subtotal := l_price * l_numItems;
 
         	IF l_fee = 0.00 AND l_subtotal >= 100.00 THEN l_discount := 0.10;
         	ELSE
@@ -172,11 +166,9 @@ BEGIN
         	l_total := l_subtotal + l_fee;
 		l_grandTotal := l_grandTotal + l_total;
 		DBMS_OUTPUT.PUT_LINE('OrderID: ' || l_orderID || ' ItemID: ' || l_itemID || ' Price: ' || l_price || ' Date Ordered: ' || l_dateOrdered || ' Number of Items: ' || l_numItems || ' Date Shipped ' || l_dateShipped || ' Shipping Fee: ' || l_fee || ' Discount: ' || l_discount || ' Tax: ' || l_tax);
-	END LOOP;
-	CLOSE c_comicBooks;
 
 	DBMS_OUTPUT.PUT_LINE(' GRAND TOTAL: ' || l_grandTotal);
-
+*/
 END;
 /
 Show Errors;
