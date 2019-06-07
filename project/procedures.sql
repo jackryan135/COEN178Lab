@@ -46,7 +46,7 @@ BEGIN
 		SELECT membership INTO l_membership FROM Customers;
 	END;
 */
-	IF membership = 'gold' THEN
+	IF Customers.membership = 'gold' THEN
 		l_fee := 0.00;
 	ELSE
 		l_fee := 10.00;	  
