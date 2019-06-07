@@ -50,7 +50,6 @@ select custID,
        email,
        address, dateJoined, membership
 from Customers WHERE custID = '0001';
-spool off;
 
 
 CLEAR COLUMNS
@@ -84,7 +83,7 @@ column dateShipped format a15 heading "Date Shipped"
 select orderID, itemID, shirtSize, numItems, price, dateOrdered, dateShipped
 from (Orders JOIN StoreItems USING(itemID)) JOIN TShirts USING(itemID)  WHERE custID = '0001';
 
-
+spool off;
 CLEAR COLUMNS
 CLEAR BREAK
 TTITLE OFF 
