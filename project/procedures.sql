@@ -45,7 +45,7 @@ BEGIN
 		l_fee := 10.00;	  
 	END IF;
 
-	UPDATE Orders SET shippingFee = l_fee WHERE Orders.custID = :old.custID AND (CURRENT_DATE <= Orders.dateShipped OR Orders.dateShipped = NULL);
+	UPDATE Orders SET shippingFee = l_fee WHERE Orders.custID = :old.custID AND (CURRENT_DATE <= Orders.dateShipped OR Orders.dateShipped is NULL);
 END;
 /
 show errors;
