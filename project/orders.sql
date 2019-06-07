@@ -12,6 +12,8 @@ exec setShipDate('0002', '09-JUN-19');
 exec setShipDate('0003', '10-JUN-19');
 exec setShipDate('0005', '10-JUN-19');
 
+SELECT * FROM Orders;
+
 UPDATE Customers SET membership = 'gold' WHERE custID = '0002';
 UPDATE Customers SET membership = 'regular' WHERE custID = '0003';
 
