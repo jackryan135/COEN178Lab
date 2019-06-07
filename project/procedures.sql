@@ -34,18 +34,14 @@ Show Errors;
 
 
 CREATE OR REPLACE TRIGGER memberUpdate
-AFTER UPDATE OF membership ON Customers
+AFTER UPDATE ON Customers
 FOR EACH ROW
-DECLARE
-	l_fee Orders.shippingFee%type;
 BEGIN
 	IF :new.membership = 'gold' THEN
-		l_fee := 0.00;
+		UPDATE Orders SET shippingFee = 10.0 WHERE custID = :new.custID AND (SYSDATE() <= dateShipped OR dateShipped IS NULL);
 	ELSE
-		l_fee := 10.00;	  
+		UPDATE Orders SET shippingFee = 0.0 WHERE custID = :new.custID AND (SYSDATE() <= dateShipped OR dateShipped IS NULL);
 	END IF;
-
-	UPDATE Orders SET shippingFee = l_fee WHERE Orders.custID = :old.custID AND (CURRENT_DATE <= Orders.dateShipped OR Orders.dateShipped is NULL);
 END;
 /
 show errors;
