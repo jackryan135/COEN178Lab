@@ -27,7 +27,18 @@ END IF;
 EXCEPTION
 	WHEN soldOut THEN DBMS_OUTPUT.PUT_LINE('Not enough items to fulfill order.');
 	WHEN invalidMembership THEN DBMS_OUTPUT.PUT_LINE('Membership tier not valid.');
-	WHEN NO_DATA_FOUND THEN INSERT INTO Orders VALUES (p_orderID, p_custID, p_itemID, p_dateOrdered, p_numItems, NULL, l_fee);
+	WHEN NO_DATA_FOUND THEN
+	DECLARE
+		l_membership Customers.membership%type;
+        	l_fee Orders.shippingFee%type;
+	BEGIN
+        	SELECT membership INTO l_membership FROM Customers WHERE custID = p_custID;
+
+        	IF (l_membership = 'regular') THEN l_fee := 10.00;
+        	ELSIF (l_membership = 'gold') THEN l_fee := 0.00;
+		END IF;
+		INSERT INTO Orders VALUES (p_orderID, p_custID, p_itemID, p_dateOrdered, p_numItems, NULL, l_fee);
+	END;
 END;
 /
 Show Errors;
