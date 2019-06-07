@@ -41,12 +41,12 @@ DECLARE
 	l_fee Orders.shippingFee%type;
 	l_membership Customers.membership%type;
 BEGIN
-	BEGIN
+/*	BEGIN
 		SELECT custID INTO l_custID FROM Customers;
 		SELECT membership INTO l_membership FROM Customers;
 	END;
-
-	IF l_membership = 'gold' THEN
+*/
+	IF membership = 'gold' THEN
 		l_fee := 0.00;
 	ELSE
 		l_fee := 10.00;	  
@@ -171,7 +171,7 @@ BEGIN
 
         	l_itemTotal := l_subtotal + l_fee;
 		l_grandTotal := l_grandTotal + l_itemTotal;
-		DBMS_OUTPUT.PUT_LINE('OrderID: ' || l_orderID || ' ItemID: ' || l_itemID || ' Title:  ' || l_title || ' Price: ' || l_price || ' Date Ordered: ' || l_dateOrdered || ' Number of Items: ' || l_numItems || ' Date Shipped ' || l_dateShipped || ' Shipping Fee: ' || l_fee || ' Discount: ' || l_discount || ' Tax: ' || l_tax || 'Order Total: ' || l_itemTotal);
+		DBMS_OUTPUT.PUT_LINE('OrderID: ' || l_orderID || ' ItemID: ' || l_itemID || ' Title:  ' || l_title || ' Price: $' || l_price || ' Date Ordered: ' || l_dateOrdered || ' Number of Items: ' || l_numItems || ' Date Shipped ' || l_dateShipped || ' Shipping Fee: $' || l_fee || ' Discount: $' || l_discount || ' Tax: $' || l_tax || ' Order Total: $' || l_itemTotal);
 	END LOOP;
 	CLOSE c_comicBooks;
 
@@ -195,11 +195,11 @@ BEGIN
 
         	l_itemTotal := l_subtotal + l_fee;
 		l_grandTotal := l_grandTotal + l_itemTotal;
-		DBMS_OUTPUT.PUT_LINE('OrderID: ' || l_orderID || ' ItemID: ' || l_itemID || ' Shirt Size: ' || l_shirtSize || ' Price: ' || l_price || ' Date Ordered: ' || l_dateOrdered || ' Number of Items: ' || l_numItems || ' Date Shipped ' || l_dateShipped || ' Shipping Fee: ' || l_fee || ' Discount: ' || l_discount || ' Tax: ' || l_tax || 'Order Total: ' || l_itemTotal);
+		DBMS_OUTPUT.PUT_LINE('OrderID: ' || l_orderID || ' ItemID: ' || l_itemID || ' Shirt Size: ' || l_shirtSize || ' Price: $' || l_price || ' Date Ordered: ' || l_dateOrdered || ' Number of Items: ' || l_numItems || ' Date Shipped ' || l_dateShipped || ' Shipping Fee: $' || l_fee || ' Discount: $' || l_discount || ' Tax: $' || l_tax || 'Order Total: $' || l_itemTotal);
 	END LOOP;
 	CLOSE c_shirts;
 
-	DBMS_OUTPUT.PUT_LINE(' GRAND TOTAL: ' || l_grandTotal);
+	DBMS_OUTPUT.PUT_LINE(' GRAND TOTAL: $' || l_grandTotal);
 END;
 /
 Show Errors;
