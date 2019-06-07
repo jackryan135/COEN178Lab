@@ -143,15 +143,16 @@ IS
 	l_grandTotal StoreItems.price%type := 0.00;
 	l_numItems INTEGER;
 	l_subtotal StoreItems.Price%type;
+	CURSOR c_comicBooks IS SELECT orderID, custID, itemID, Title, price, dateOrdered, dateShipped, numItems, shippingFee FROM (ComicBooks JOIN Orders USING(itemID)) JOIN StoreItems USING(itemID);
 
 BEGIN
         SELECT custID, name, email, address INTO l_custID, l_name, l_email, l_address FROM Customers WHERE custID = p_custID;
 	DBMS_OUTPUT.PUT_LINE('Customer Information:');
 	DBMS_OUTPUT.PUT_LINE('CustomerID: ' || l_custID || ' Name: ' || l_name || ' EMail: ' || l_email || ' Address: ' || l_address);
 
-
+/*
 	DBMS_OUTPUT.PUT_LINE('Comic Book Orders:');
-		/*l_subtotal := l_price * l_numItems;
+		l_subtotal := l_price * l_numItems;
 
         	IF l_fee = 0.00 AND l_subtotal >= 100.00 THEN l_discount := 0.10;
         	ELSE
