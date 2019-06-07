@@ -18,12 +18,14 @@ UPDATE Customers SET membership = 'regular' WHERE custID = '0003';
 SELECT * FROM Customers;
 SELECT * FROM Orders;
 
-DBMS_OUTPUT.PUT_LINE('Order 1 Total: $' || SELECT calcTotal('0001') FROM DUAL);
-DBMS_OUTPUT.PUT_LINE('Order 2 Total: $' || SELECT calcTotal('0002') FROM DUAL);
-DBMS_OUTPUT.PUT_LINE('Order 3 Total: $' || SELECT calcTotal('0003') FROM DUAL);
-DBMS_OUTPUT.PUT_LINE('Order 4 Total: $' || SELECT calcTotal('0004') FROM DUAL);
-DBMS_OUTPUT.PUT_LINE('Order 5 Total: $' || SELECT calcTotal('0005') FROM DUAL);
-DBMS_OUTPUT.PUT_LINE('Order 6 Total: $' || SELECT calcTotal('0006') FROM DUAL);
+BEGIN
+	DBMS_OUTPUT.PUT_LINE('Order 1 Total: $' || SELECT calcTotal('0001') FROM DUAL);
+	DBMS_OUTPUT.PUT_LINE('Order 2 Total: $' || SELECT calcTotal('0002') FROM DUAL);
+	DBMS_OUTPUT.PUT_LINE('Order 3 Total: $' || SELECT calcTotal('0003') FROM DUAL);
+	DBMS_OUTPUT.PUT_LINE('Order 4 Total: $' || SELECT calcTotal('0004') FROM DUAL);
+	DBMS_OUTPUT.PUT_LINE('Order 5 Total: $' || SELECT calcTotal('0005') FROM DUAL);
+	DBMS_OUTPUT.PUT_LINE('Order 6 Total: $' || SELECT calcTotal('0006') FROM DUAL);
+END;
 
 exec orderDetails('0001', '01-JUN-19');
 
