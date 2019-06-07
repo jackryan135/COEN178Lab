@@ -1,4 +1,3 @@
-SP2-0734: unknown command beginning "ON ROW SKI..." - rest of line ignored.
 
                                                   Customer Order Report                                                 
                                                                                                                         
