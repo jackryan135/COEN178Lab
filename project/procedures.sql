@@ -35,7 +35,7 @@ Show Errors;
 
 CREATE OR REPLACE TRIGGER memberUpdate
 AFTER UPDATE OF membership ON Customers
-FOR EACH ROW
+//FOR EACH ROW
 DECLARE
 	l_custID Orders.custID%type;
 	l_fee Orders.shippingFee%type;
