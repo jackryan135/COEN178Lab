@@ -34,7 +34,7 @@ Show Errors;
 
 
 CREATE OR REPLACE TRIGGER memberUpdate
-AFTER UPDATE ON Customers
+BEFORE UPDATE ON Customers
 FOR EACH ROW
 DECLARE
 	l_custID Orders.custID%type;
@@ -52,7 +52,7 @@ BEGIN
 		l_fee := 10.00;	  
 	END IF;
 
-	UPDATE Orders SET shippingFee = l_fee WHERE Orders.custID = l_custID AND CURRENT_DATE >= Orders.dateShipped;
+	UPDATE Orders SET shippingFee = l_fee WHERE Orders.custID = l_custID AND (CURRENT_DATE >= Orders.dateShipped OR Orders.dateShipped = NULL);
 END;
 /
 show errors;
