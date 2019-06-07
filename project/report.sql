@@ -26,8 +26,6 @@ ttitle center "Customer Order Report" SKIP 2
 
 btitle center report_date
 
-REPHEADER PAGE CENTER 'Customer Information'
-
 --After the SPOOL command, anything entered or displayed on
 -- standard output is written to the spool file, report.html.
 
